@@ -1,0 +1,25 @@
+#this is a replication of the dockerfile from earlier examples
+# For the development environment in a react project... npm run start gives us
+# a local server and starts a tab in the brower on port 3000 
+
+# NOTE: You cannot run this as a node application without the docker container... we have 
+# deleted the node modules from the working directory... they are installed in the container
+# by the npm install below, and do not exist prior to that.
+
+# we are setting up a node/React application *specifically for the Docker dev cycle*
+
+FROM node:alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+# This isn't strictly necessary in the current configuration of docker-compose... ATM, we
+# are using a reference volume to the local copies on the dev machine so that we can update
+# on the fly and have the changes reflected in the browser... we will leave this here so
+# that if we start without using docker-compose, it will still work (we just won't get the)
+# automatic updates
+COPY . .
+
+CMD ["npm", "run", "start"]
