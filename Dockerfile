@@ -20,6 +20,7 @@ RUN npm run build
 
 # Step 2 - running with nginx FROM statement automatically terminates the earlier block
 FROM nginx
+EXPOSE 80
 
 # copy from the earlier phase into a static html for nginx to serve. 
 # nginx starts up automatically, so no run statement is required
