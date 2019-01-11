@@ -22,4 +22,4 @@ deploy:
   access_key_id: $AWS_ACCESS_KEY
   secret_access_key:
     # this may have to be put into double quotes, according to the video
-    secure: $AWS_SECRET_KEY
+    secure: "$AWS_SECRET_KEY"
